@@ -1,6 +1,16 @@
 <script setup>
+import useStudent from "../../composables/studentApi";
+import { onMounted } from "vue";
+import { useRoute } from "vue-router";
+
+const{studentData,error,getSingleStudent} =useStudent();
+const route = useRoute();
+onMounted(() =>{
+   getSingleStudent(route.params.id);
+});
 
 </script>
+
 
 <template>
  
@@ -16,9 +26,9 @@
 
    <tbody class="text-center">
    <tr>
-   <td class="py-2">1</td>
-   <td class="py-2">Sonam</td>
-   <td class="py-2">sonam@gmail.com</td>
+   <td class="py-2">{{ studentData.id }}</td>
+   <td class="py-2">{{ studentData.stuname }}</td>
+   <td class="py-2">{{ studentData.email }}</td>
    </tr>
    </tbody>
    </table>

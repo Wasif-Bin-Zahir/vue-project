@@ -1,7 +1,15 @@
 <script setup>
+import useStudent from '../../composables/studentApi';
+import { useRoute } from 'vue-router';
+import { onMounted } from 'vue';
+const {studentData,error,getSingleStudent,updateStudent} = useStudent();
+const {params} = useRoute();
+onMounted(() => {
+getSingleStudent(params.id);
+});
 function handleUpdateStudentForm()
 {
-  console.log("Updated");
+  updateStudent(params.id,studentData.value);
 }
 </script>
 
@@ -25,8 +33,9 @@ Edit Student
  type="text"
  id="stuid"
  class="border-2 border-gray-200 w-full py-2 px-4"
- readonly
+ readonly                                              
  disabled 
+ v-model.trim="studentData.id"
  />
  </div>
  </div>
@@ -41,8 +50,7 @@ Edit Student
  type="text"
  id="stuname"
  class="border-2 border-gray-200 w-full py-2 px-4"
- readonly
- disabled 
+ v-model.trim="studentData.stuname"
  />
  </div>
  </div>
@@ -57,8 +65,7 @@ Edit Student
  type="email"
  id="email"
  class="border-2 border-gray-200 w-full py-2 px-4"
- readonly
- disabled 
+ v-model.trim="studentData.email"
  />
  </div>
  </div>

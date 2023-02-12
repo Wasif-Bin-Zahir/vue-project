@@ -27,3 +27,11 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Start JSON Server
+
+json-server --watch db.json --port 3333
+
+### Set-ExecutionPolicy for regular users
+
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser

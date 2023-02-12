@@ -1,12 +1,17 @@
 <script setup>
 import { reactive } from 'vue';
 import { RouterLink } from "vue-router";
+import useStudent from '../../composables/studentApi';
+
+const{studentData,error,createStudent} = useStudent();
+ 
+
 const formData = reactive({
   stuname:"",
   email:"",
 });
 const handleAddStudentForm = async () => {
-  console.log("Form Submitted",formData);
+await createStudent(formData);
 };
 </script>
 
